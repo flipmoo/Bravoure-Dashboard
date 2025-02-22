@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300;
+  }
+
+  .project-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+
+  /* Optimalisatie voor grote schermen */
+  @media (min-width: 4000px) {
+    .project-grid {
+      grid-template-columns: repeat(8, 1fr); /* 8 kolommen voor 6016px breed scherm */
+    }
+    
+    .container {
+      max-width: 6016px !important;
+      padding: 2rem;
+    }
+  }
+
+  @media (min-width: 2000px) and (max-width: 3999px) {
+    .project-grid {
+      grid-template-columns: repeat(6, 1fr); /* 6 kolommen voor middelgrote schermen */
+    }
+  }
+
+  @media (min-width: 1500px) and (max-width: 1999px) {
+    .project-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 kolommen voor kleinere schermen */
+    }
+  }
+}
+
+:root {
+  --color-warning: #2563eb;  /* Blauw */
+  --color-critical: #f97316; /* Oranje */
+  --color-exceeded: #dc2626; /* Rood */
+  --color-normal: #6b7280;   /* Grijs */
+  
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+/* Animaties */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  @apply w-6 h-6 border-2 border-gray-300 rounded-full;
+  border-top-color: var(--color-warning);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tooltip styles */
+.tooltip {
+  @apply absolute z-50 px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg;
+  max-width: 200px;
+}
+
+/* Progress bar styles */
+.progress-bar {
+  @apply w-full h-2 bg-gray-100 rounded-full overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full transition-all duration-500;
+}
+
+/* Project type colors */
+.project-type-development { @apply border-l-4 border-blue-500; }
+.project-type-design { @apply border-l-4 border-purple-500; }
+.project-type-marketing { @apply border-l-4 border-green-500; }
+.project-type-maintenance { @apply border-l-4 border-orange-500; }
+
+/* Card hover effects */
+.card {
+  @apply transform transition-all duration-300;
+}
+
+.card:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+
+.text-gray-600 { color: #4b5563; }
+.text-gray-800 { color: #1f2937; }
+.text-gray-900 { color: #111827; }
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #f3f4f6;
+  color: #374151;
+  font-weight: 500;
+}

@@ -1,0 +1,140 @@
+# Bravoure Project Dashboard - Plan
+==================================
+
+1. PROJECT BASIS
+---------------
+- Project naam: Bravoure Project Dashboard
+- Project beschrijving: Een intern dashboard voor het visualiseren van project statussen uit Gripp
+- Hoofddoel: Real-time inzicht bieden in de status van alle lopende projecten op een groot scherm op kantoor
+- Eindgebruikers: Intern projectmanagement team en medewerkers
+
+2. TECHNISCHE SPECIFICATIES
+--------------------------
+- Type applicatie: Web applicatie
+- Tech stack:
+  * Frontend: Vite + React
+  * Styling: CSS + shadcn/ui component library
+  * API: Gripp API v3
+- Technische vereisten:
+  * Gripp API integratie
+  * Scherm optimalisatie: 6016x3384 px
+  * Browser: Chrome
+  * Data refresh: 15 minuten interval
+  * Integratie met Gripp Project Management System
+
+3. FUNCTIONALITEITEN
+-------------------
+A. Kern functionaliteiten:
+  1. Project Overzicht
+     - Grid-view (15 projecten per scherm)
+     - Automatische rotatie (per minuut)
+     - Alleen actieve projecten (Archive = False)
+
+  2. Project Informatie
+     - Klantnaam & Projectnaam
+     - Project type categorisering
+     - Financiële metrics
+     - Uren budgettering
+     - Voortgangsindicatoren
+     - Mijlpalen & deadlines
+
+  3. Visuele Systemen
+     - Voortgangsbalken
+     - Waarschuwingskleuren (80%, 95%, >100%)
+     - Fixed price project alerts
+
+  4. Detail Views
+     - Budget/uren per projectregel
+     - Discipline-specifieke metrics
+     - Mijlpalen beheer
+
+B. MVP Scope:
+  - Basis dashboard met kernmetrieken
+  - Filtering op klant & project type
+  - Project detailweergave
+  - Gripp API integratie
+  - Basis waarschuwingssysteem
+
+4. ONTWIKKELINGSFASES
+--------------------
+Fase 1 - MVP:
+- Development environment setup
+- API integratie
+- Basis dashboard
+- Kern functionaliteiten
+
+Fase 2 - Verfijning:
+- Uitgebreide filtering
+- Data visualisatie verbetering
+- Performance optimalisatie
+- Feedback verwerking
+
+Fase 3 - Optimalisatie:
+- Nice-to-have features
+- Design verfijning
+- Performance tuning
+- Stabilisatie
+
+5. VERFIJNING & OPTIMALISATIE
+---------------------------
+- UX/UI Optimalisaties:
+  * Modern, clean interface
+  * Intuïtieve navigatie
+  * Duidelijke status indicators
+  * Automatische rotatie controls
+  * Bravoure huisstijl
+
+- Performance Verbeteringen:
+  * API communicatie optimalisatie
+  * Laadtijden verbetering
+  * Data refresh management
+
+- Extra Features:
+  * Dashboard customization
+  * Geavanceerde alerts
+  * Custom views configuratie
+
+VERIFICATIE ANTWOORDEN:
+----------------------------
+1. Authenticatie: Volgens Gripp API v3 documentatie
+2. Waarschuwingskleuren:
+   * Normaal: Grijs
+   * Waarschuwing: Blauw
+   * Kritiek: Oranje
+   * Overschreden: Rood
+3. Projectrotatie: Geen specifieke volgorde vereist
+4. Projecttypes: Geen prioriteiten in weergave
+5. Exports/rapportages: Niet nodig
+6. Performance targets: Geen specifieke eisen
+7. Backup systeem: Niet vereist
+8. Security: Geen specifieke vereisten
+
+IMPLEMENTATIE STRATEGIE:
+----------------------
+We volgen een iteratieve aanpak met kleine, valideerbare stappen:
+
+1. Eerste Iteratie - Basis Setup:
+   * Project initialisatie met Vite + React
+   * Basis layout structuur
+   * Gripp API connectie test
+   ➜ Validatie: Werkende basis applicatie met API verbinding
+
+2. Tweede Iteratie - Data Weergave:
+   * Ophalen project data
+   * Basis grid weergave
+   * Simpele project kaarten
+   ➜ Validatie: Projecten worden correct getoond
+
+3. Derde Iteratie - Visuele Systemen:
+   * Implementatie waarschuwingskleuren
+   * Voortgangsbalken
+   * Basis metrics
+   ➜ Validatie: Correcte visuele representatie
+
+4. Vierde Iteratie - Interactiviteit:
+   * Detail views
+   * Filtering
+   * Rotatie systeem
+   ➜ Validatie: Werkende interactieve elementen
+
+Elke stap wordt apart gevalideerd voordat we verdergaan naar de volgende fase. 
