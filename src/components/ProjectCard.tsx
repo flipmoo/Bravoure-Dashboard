@@ -99,13 +99,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
                 )}
               </div>
               {project.tags && project.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {console.log('Project tags:', project.tags)}
                   {project.tags.map(tag => (
                     <span 
                       key={tag.id} 
-                      className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-bravoure-gray-100 text-bravoure-gray-700"
+                      className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-bravoure-blue/5 text-bravoure-blue border border-bravoure-blue/10"
                     >
-                      {tag.name}
+                      {tag.searchname || tag.name}
                     </span>
                   ))}
                 </div>

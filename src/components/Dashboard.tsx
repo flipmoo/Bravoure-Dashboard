@@ -165,7 +165,7 @@ const Dashboard: React.FC = () => {
   const [selectedEmployee, setSelectedEmployee] = useState<string>('');
   const [selectedSort, setSelectedSort] = useState<string>('deadline-asc');
   const [selectedPhase, setSelectedPhase] = useState<string>('');
-  const [selectedDeadline, setSelectedDeadline] = useState<string>('all');
+  const [selectedTag, setSelectedTag] = useState<string>('');
   const [selectedProgress, setSelectedProgress] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'dashboard' | 'list'>('dashboard');
 
@@ -221,6 +221,18 @@ const Dashboard: React.FC = () => {
     return Array.from(uniquePhases).sort();
   }, [projects]);
 
+  const tags = useMemo(() => {
+    // Debug log voor tags
+    console.log('All projects tags:', projects.map(p => p.tags));
+    
+    const uniqueTags = new Set(
+      projects.flatMap(p => 
+        p.tags?.map(t => t.searchname || t.name) || []
+      ).filter(Boolean)
+    );
+    return Array.from(uniqueTags).sort();
+  }, [projects]);
+
   // Calculate project progress
   const getProjectProgress = (project: GrippProject): number => {
     const written = project.projectlines.reduce((sum, line) => 
@@ -250,12 +262,9 @@ const Dashboard: React.FC = () => {
           return false;
         }
 
-        // Deadline filter
-        if (selectedDeadline !== 'all' && project.deadline) {
-          const deadlinePeriod = deadlinePeriods.find(p => p.value === selectedDeadline);
-          if (deadlinePeriod && !deadlinePeriod.filter(project.deadline)) {
-            return false;
-          }
+        // Tag filter
+        if (selectedTag && !project.tags?.some(t => t.searchname === selectedTag || t.name === selectedTag)) {
+          return false;
         }
 
         // Progress filter
@@ -275,7 +284,7 @@ const Dashboard: React.FC = () => {
       return [...filtered].sort(sortOption.sortFn);
     }
     return filtered;
-  }, [projects, selectedClient, selectedEmployee, selectedSort, selectedPhase, selectedDeadline, selectedProgress]);
+  }, [projects, selectedClient, selectedEmployee, selectedSort, selectedPhase, selectedTag, selectedProgress]);
 
   // Initial load and auto refresh
   useEffect(() => {
@@ -389,13 +398,12 @@ const Dashboard: React.FC = () => {
 
                 <select
                   className="px-2 py-1 text-sm rounded-md border border-bravoure-gray-200 focus:outline-none focus:ring-2 focus:ring-bravoure-blue focus:border-transparent"
-                  value={selectedDeadline}
-                  onChange={(e) => setSelectedDeadline(e.target.value)}
+                  value={selectedTag}
+                  onChange={(e) => setSelectedTag(e.target.value)}
                 >
-                  {deadlinePeriods.map(period => (
-                    <option key={period.value} value={period.value}>
-                      {period.label}
-                    </option>
+                  <option value="">Alle tags</option>
+                  {tags.map(tag => (
+                    <option key={tag} value={tag}>{tag}</option>
                   ))}
                 </select>
 
@@ -417,7 +425,7 @@ const Dashboard: React.FC = () => {
                     setSelectedClient('');
                     setSelectedEmployee('');
                     setSelectedPhase('');
-                    setSelectedDeadline('all');
+                    setSelectedTag('');
                     setSelectedProgress('all');
                   }}
                   className="px-3 py-1 text-sm rounded-md border border-bravoure-gray-200 hover:bg-bravoure-gray-50 text-bravoure-gray-600 hover:text-bravoure-gray-900 transition-colors"

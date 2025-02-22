@@ -267,7 +267,8 @@ export async function fetchActiveProjects(): Promise<GrippProject[]> {
             'project.company',
             'project.projectlines',
             'project.employees_starred',
-            'project.tags'
+            'project.tags',
+            'project.tags.*'  // Add this to get all tag fields
           ]
         }
       ],
@@ -279,6 +280,9 @@ export async function fetchActiveProjects(): Promise<GrippProject[]> {
     }
 
     const allProjects = response.data[0]?.result?.rows || [];
+    console.log('API Response projects:', allProjects);
+    console.log('Sample project tags:', allProjects[0]?.tags);
+    
     const filteredProjects = allProjects.filter((project: any) => project.company?.id !== 95597);
     
     // Save to cache immediately

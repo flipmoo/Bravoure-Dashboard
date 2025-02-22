@@ -155,7 +155,13 @@ export interface GrippProject {
   extrapdf1: { id: number; name: string; } | null;
   extrapdf2: { id: number; name: string; } | null;
   umbrellaproject: { id: number; name: string; } | null;
-  tags: Array<{ id: number; name: string; }>;
+  tags: Array<{
+    id: number;
+    name: string;
+    searchname: string;
+    type?: string;
+    color?: string;
+  }>;
   employees: GrippEmployee[];
   employees_starred: GrippEmployee[];
   files: Array<{ id: number; name: string; }>;
